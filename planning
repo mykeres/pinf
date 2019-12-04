@@ -1,0 +1,49 @@
+Una webapp que consta:
+
+1- Diseñar, configurar e implementar una base de datos que contenga los datos de los usuarios y fotos.(0-1 dia).
+
+2- Crear una estructura MVC (modelo vista controlador). (2-3 dias)
+
+3- Crear una pagina principal para registrarse y/o loguearse.(1-2 dias)
+    - Utilizar hasheado para la contraseñas. (0-1 dia).
+
+4- Una página de usuario que constara de un formulario (visual), mostrará las ultimas fotos y los distintos criterios de clasificación, etiquetas.(3-4 dias)
+    - Ventana emergente para cambiar las propiedades de una fotografía, (añadir-quitar etiquetas). (0-1 día).
+    - Utilizar librería para identificar metadatos de fotografías e insertarlos en la base de datos. (0-2 días)
+    - Implementar multiselección y compresión (zip). (0-1 días)
+
+5- Crear una api para comunicarse con otros programas.(0-3 dias)
+    - Entrada-salida de imágenes. 
+
+Opcional a considerar:
+    - Utilizar phpmailer para hacer una verificación del registro. (a traves de tokens) 1-2 dias.
+    - Implementar recaptcha de google para evitar el spam. 0-1 dia
+    - Configurar el htaccess para hacer direcciones amigables. 0-1 dia
+    - Añadir banners de política de privacidad y cookies. 0-1 dia.
+    - Implementar multiselección de fotografias para una etiqueta. 0-2 dias.
+    - Implementar AJAX para el buscador de fotografías 1-3 días.
+    - Configurar la caché para la carga de fotografías. 0-1 día.
+
+- Implementar y testear su accesibilidad (ciegos) 1-2 días
+- Hacer un diseño adaptative y responsive. Para dispositivos móviles (2-3 dias)
+
+Subirlo a producción. (0-1 dia)
+
+Tiempo de ejecución: 2-3 semanas.
+
+Una memoria que constara de:
+    o Portada (0-1)
+    o Índice(0-1)
+    o Introducción(0-1)
+    o Objetivos del proyecto(0-1)
+    o Viabilidad del proyecto(0-1)
+    o Análisis de costes(0-1)
+    o Solución planteada(2-4)
+    o Conclusiones(0-1)
+    o Bibliografía(0-1)
+
+Tiempo de ejecución: 1 semana.
+
+
+-----------------------------------
+No me veo capaz (son demasiados pasos inconexos, lejano)
