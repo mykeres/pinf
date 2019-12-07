@@ -1,0 +1,14 @@
+1- dificultad: a la hora de diseñar la BBDD como trato las etiquetas. No pueden ser una entidad perse.
+Ya que a la hora de hacer las consultas se mezclarian etiquetas de distintos usuarios.
+Posible solución: generar identificativos de etiquetas únicas (nombre de usuario_md5(etiqueta))
+2- dificultad: en la nueva versión del mysqlworkbench no permite logearse como root sin contraseña.
+La mejor solucion que he encontrado  crear un usuario admin con una contraseña clásica (sin utilizar plugins) y darle todos los permisos.
+fuente: https://askubuntu.com/questions/773446/unable-to-connect-via-mysql-workbench-to-localhost-in-ubuntu-16-04-passwordless
+3- dificultad: error a la hora de conectar a la base de datos.
+Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+solución: https://stackoverflow.com/questions/21377348/pdo-construct-php-network-getaddresses-getaddrinfo-failed-name-or-servic
+
+1- decisión: en la base de datos consideré generar etiquetas únicas para cada uno de los usuarios.
+
+3- recordar: para crear de manera visual bases de datos en mysqlworkbench una vez que has creado la conexion (new model)
+- una vez que hayas importado la bbdd (sql); selecciona crear un EER desde modelos.
