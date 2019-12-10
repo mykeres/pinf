@@ -1,5 +1,5 @@
 <?php
-    include_once 'includes/db.php';
+    include_once 'model/db.php';
     $database = new DataBase();
 
     $prueba = $database->conectar();
