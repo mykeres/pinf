@@ -9,7 +9,13 @@ Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo
 solución: https://stackoverflow.com/questions/21377348/pdo-construct-php-network-getaddresses-getaddrinfo-failed-name-or-servic
 4- dificultad: manejo de rutas relativas en php. (recordando variables de entorno (constantes predefinidas que las llaman en php) __DIR__ y __FILES__)
 5- dificultad: sintaxis de subconsultas en PDO.//mirar
-1- decisión: en la base de datos consideré generar etiquetas únicas para cada uno de los usuarios.
+1- alerta: Cuidado con la configuración de caracteres en PHP y MySQL.
+https://www.toptal.com/php/codificacion-de-datos-una-guia-utf-8-para-php-y-mysql
+https://stackoverflow.com/questions/3513773/change-mysql-default-character-set-to-utf-8-in-my-cnf
+2- alerta: SQLinjection. Aparte de proteger la consulta SQL hay que impedir inyección de javascript)
+https://stackoverflow.com/questions/4364686/how-do-i-sanitize-input-with-pdo
 
+1- decisión: en la base de datos consideré generar etiquetas únicas para cada uno de los usuarios.
+2- decisión: para generar nombres distintos de ficheros que no colisionen //BUSCAR
 3- recordar: para crear de manera visual bases de datos en mysqlworkbench una vez que has creado la conexion (new model)
 - una vez que hayas importado la bbdd (sql); selecciona crear un EER desde modelos.

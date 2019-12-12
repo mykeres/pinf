@@ -8,12 +8,12 @@
 </head>
 <body>
    <form action="login.php" method="POST">
-        <label for="usuario">usuario
+        <label for="usuario">usuario</br>
         </label>
-        <input type="text" name="usuario" id="usuario">
-        <label for="password">contraseña
+        <input type="text" name="usuario" id="usuario"></br>
+        <label for="password">contraseña</br>
         </label>
-        <input type="text" name="password" id="password">
+        <input type="password" name="password" id="password"></br>
         <input type="submit" value="Iniciar sesión">
    </form> 
    <div id="alta">Si no estas dado de alta <a href="alta.html">¡REGISTRATE!</a></div>
