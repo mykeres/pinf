@@ -29,4 +29,6 @@
             return $conexion;
         }
         // TODO asociar la conexión a atributos de la clase, separar atributos a un fichero de configuración
+        // HECHO__
+        
     }
