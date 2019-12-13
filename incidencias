@@ -9,6 +9,8 @@ Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo
 solución: https://stackoverflow.com/questions/21377348/pdo-construct-php-network-getaddresses-getaddrinfo-failed-name-or-servic
 4- dificultad: manejo de rutas relativas en php. (recordando variables de entorno (constantes predefinidas que las llaman en php) __DIR__ y __FILES__)
 5- dificultad: para generar nombres distintos de ficheros que no colisionen //BUSCAR
+6- dificultad: multiples conexiones a la BBDD.
+(posible solucion mirar: https://stackoverflow.com/questions/9727522/best-way-to-make-a-pdo-mysql-static-connection-class)
 
 1- alerta: Cuidado con la configuración de caracteres en PHP y MySQL.
 https://www.toptal.com/php/codificacion-de-datos-una-guia-utf-8-para-php-y-mysql

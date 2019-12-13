@@ -3,28 +3,39 @@ include_once 'db.php';
 class User extends DataBase{
 
     private $nombre;
+    private $password;
 
-    public function __construct($nombre){
+    public function __construct($nombre, $password){
         parent::__construct();
+        $this->nombre = $nombre;
+        $this->password = $password;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+    public function setNombre($nombre){
         $this->nombre = $nombre;
     }
 
     public function userExists($currentUser): bool{
-        $query = $this->conectar()->prepare('SELECT EXISTS (SELECT * FROM `usuario` WHERE `nombre` = :nombre LIMIT 1)');
+        $query = $this->conectar()->prepare('SELECT * FROM `usuario` WHERE `nombre` = :nombre LIMIT 1');
         $query->bindParam(':nombre',$currentUser,PDO::PARAM_STR);
         $query->execute();
-        echo "</br>query: ".$currentUser;
-        var_dump($query->execute());
-        return boolval($query->fetch());
-        //MIRAR EN QUE FALLA
+        $exist = $query->rowCount();
+        // echo "</br>query: ".$currentUser;
+        // echo "</br>".boolval($exist);
+        return boolval($exist);
     }
 
-    public function setUser($password){
-        $hash = password_hash($password, PASSWORD_BCRYPT);
+    public function insertUser(): User{
+        $hash = password_hash($this->password, PASSWORD_BCRYPT);
         $query = $this->conectar()->prepare('INSERT INTO `usuario` (`nombre`, `password`) VALUES (?,?)');
         $query->bindParam(1,$this->nombre,PDO::PARAM_STR);
         $query->bindParam(2,$hash,PDO::PARAM_STR);
         $query->execute();
+        return $this;
         //$query->execute([$nombre,  $hash]);
     }
 
@@ -34,21 +45,33 @@ class User extends DataBase{
         $query->execute();
     }
     
+    public function isValid(): bool{
+        if (!($this->userExists($this->getNombre()))){
+            return false;
+        }
 
-    public function countImages(){
+        return true;
+    }
+
+    public function countImages(): int{
         $query = $this->conectar()->prepare('SELECT COUNT(*) FROM `imagen` WHERE `idusuario` = (SELECT `idusuario` FROM `usuario` WHERE `nombre`= :nombre LIMIT 1)');///
-        $query->execute(array(':nombre' => 'Oscar'));
+        $query->execute(array(':nombre' => $this->nombre));
+        return $query->rowCount();
     }
 
-    public function getTags(){
-
-        $query = $this->conectar()->prepare('INSERT INTO `usuario` (`nombre`, `password`) VALUES (?,?)');
+    public function getTags(): array{
+        $query = $this->conectar()->prepare('SELECT nombre FROM etiqueta INNER JOIN usuario ON etiqueta.idusuario=usuario.idusuario WHERE usuario.nombre= :nombre');
+        $query->bindParam(':nombre',$this->nombre,PDO::PARAM_STR);
+        $fetch = $query->fetchAll();
+        return $fetch;
     }
 
-    public function getImages(){
-
-        $query = $this->conectar()->prepare('INSERT INTO `usuario` (`nombre`, `password`) VALUES (?,?)');
-        //TODO terminar consultas
+    public function getImages(): array{
+        $query = $this->conectar()->prepare('SELECT nombre FROM imagen INNER JOIN usuario ON imagen.idusuario=usuario.idusuario WHERE usuario.nombre= :nombre');
+        $query->bindParam(':nombre',$this->nombre,PDO::PARAM_STR);
+        $fetch = $query->fetchAll();
+        return $fetch;
+        
     }
 
     public function getId(){

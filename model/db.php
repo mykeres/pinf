@@ -19,6 +19,9 @@
         public function conectar()
         {
             try {
+                echo '<br/>host:'.$this->host;
+                echo '<br/>user:'.$this->user;
+                echo '<br/>password:'.$this->password;
                 $conexion = new PDO("mysql:host=$this->host; dbname=$this->database", $this->user, $this->password);
                 $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
             } catch (Error $e) {
