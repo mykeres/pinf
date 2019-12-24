@@ -1,8 +1,8 @@
 <?php
 return array(
     "host"      => "localhost",
-    "user"      => "admin",
-    "password"  => "password",
+    "user"      => "user",
+    "password"  => "pass",
     "database"  => "pinf",
     "charset"   => "utf8"
 );

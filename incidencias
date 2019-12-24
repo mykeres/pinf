@@ -11,6 +11,9 @@ solución: https://stackoverflow.com/questions/21377348/pdo-construct-php-networ
 5- dificultad: para generar nombres distintos de ficheros que no colisionen //BUSCAR
 6- dificultad: multiples conexiones a la BBDD.
 (posible solucion mirar: https://stackoverflow.com/questions/9727522/best-way-to-make-a-pdo-mysql-static-connection-class)
+solucionado (comprobando si existe una conexión dentro del constructor)
+7- dificultad implementando PDO--> cambio a mysqli.
+
 
 1- alerta: Cuidado con la configuración de caracteres en PHP y MySQL.
 https://www.toptal.com/php/codificacion-de-datos-una-guia-utf-8-para-php-y-mysql
@@ -19,7 +22,7 @@ https://stackoverflow.com/questions/3513773/change-mysql-default-character-set-t
 https://stackoverflow.com/questions/4364686/how-do-i-sanitize-input-with-pdo
 
 1- decisión: en la base de datos consideré generar etiquetas únicas para cada uno de los usuarios.
-2- decisión: Cambiar la estructura del programa https://r.je/immutable-mvc-in-php  //TODO
+2- decisión: Cambiar la estructura del programa https://r.je/immutable-mvc-in-php --> cambio a otro modelo de MVC más sencillo.
 
 3- recordar: para crear de manera visual bases de datos en mysqlworkbench una vez que has creado la conexion (new model)
 - una vez que hayas importado la bbdd (sql); selecciona crear un EER desde modelos.
