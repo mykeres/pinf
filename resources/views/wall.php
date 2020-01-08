@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" method="POST">
+<form method="POST" enctype="multipart/form-data">
 	<input name="imagen" type="file" />
 	<input type="submit" value="Subir" />
 </form>
@@ -18,9 +18,12 @@
 */
 ?>
 </br>
+
+
+
 <?php //crear un formulario dinamico con las etiquetas clasificadas por tipo
 	// $eventos = User->getTagsFromClass('evento') ?? [];
-	$eventos = [];
+/*	$eventos = [];
 	$lugares = [];
 	$personas = [];
 	$temas = [];
@@ -54,3 +57,4 @@
 	}
 	?>
 </form>
+*/

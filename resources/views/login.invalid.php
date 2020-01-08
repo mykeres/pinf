@@ -1,4 +1,4 @@
 
 <body>
-	<h3>Loging invalido</h3>
+	<h3>Login invalido</h3>
 </body>

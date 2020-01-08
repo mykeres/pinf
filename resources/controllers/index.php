@@ -7,6 +7,13 @@
 			if(!empty($_POST)){
 				print_r($_POST);
 				$nombre = $_POST['nombre'];
+				$userTable = new UserTable();
+				$currentUser = $userTable->getByName($nombre);
+				if (!empty($currentUser)) {
+					echo $nombre." esta pillado escoge otro";
+					return $this->_render('login.invalid');
+					exit;
+				}
 				$password = $_POST['password'];
 				$email = $_POST['email'];
 				$newUser = new User();
@@ -31,10 +38,6 @@
 				$this->login();// enviamos al login
 				exit;
 			}
-			session_start();
-			if(!$_SESSION['user']){
-				exit;
-			}
 			if(!empty($_FILES['imagen'])){
 				$tipo=$_FILES["imagen"]["type"];
 				if($tipo=="image/jpeg"){
@@ -47,7 +50,9 @@
 		}
 
 		function login(){
+			// echo "llego aqui";
 			if (_app::isLogged()) {
+				echo "is loged";
 				$user = _app::getUser();
 				$this->output['text'] = 'Buenos días';
 				$this->output['text2'] = [
@@ -77,40 +82,56 @@
 			$this->_render('login');
 		}
 
-		function formularioImagenes(){
+		function formulario(){
+//			echo "llego aqui:welcome</br>";
 			if (!_app::isLogged()) {
+			 	echo "llego aqui:logeo";
 				return $this->render('registro');
 			}
 			$user = _app::getUser();
-			if(!empty($_POST)){
-				if (isset($_FILES['files'])) {
+			if(!empty($_FILES)){
+print_r($_POST);
+print_r($_FILES);
+				if (isset($_FILES['imagen'])) {
         			$errors = [];
-			        $path = '../imageUpload/'.$user;
+			        $path = '../imageUpload/'.$user->getIdusuario().'/';
+			        if (!file_exists($path)){
+			        	mkdir ($path);
+			        }
 					$extensions = ['jpg', 'jpeg', 'png', 'gif'];
-			        $all_files = count($_FILES['files']['tmp_name']);
 
-			        for ($i = 0; $i < $all_files; $i++) {  
-						$fileName = $_FILES['files']['name'][$i];
-						$fileTmp = $_FILES['files']['tmp_name'][$i];
-						$fileType = $_FILES['files']['type'][$i];
-						$fileSize = $_FILES['files']['size'][$i];
-						$fileExt = strtolower(end(explode('.', $_FILES['files']['name'][$i])));
-						$file = $path . $fileName;
-						if (!in_array($fileExt, $extensions)) {
-							$errors[] =  $fileName . ' ' . $fileType . " No es una imagen.";
-						}
-						if ($fileSize > (2 * 1024 * 1024)){
-							$errors[] =  $fileName . ' ' . $fileType . " Excede el tamaño máximo.";
-						}
-						if (empty($errors)) {
-							move_uploaded_file($fileTmp, $file);
-						}
+					$fileName = $_FILES['imagen']['name'];
+					$fileTmp = $_FILES['imagen']['tmp_name'];
+					$fileType = $_FILES['imagen']['type'];
+					$fileSize = $_FILES['imagen']['size'];
+					$fileType= str_replace('image/', '', $fileType);
+					$nameHash = uniqid();
+					$file = $path . $nameHash;
+					if (!in_array($fileType, $extensions)) {
+						$errors[] =  $fileName . ' ' . $fileType . " No es una imagen.";
 					}
-				if ($errors) print_r($errors);
+					if ($fileSize > (2 * 1024 * 1024)){
+						$errors[] =  $fileName . ' ' . $fileType . " Excede el tamaño máximo.";
+					}
+					if (empty($errors)) {
+						move_uploaded_file($fileTmp, $file);
+						//subir a bbdd.
+					}
+					if ($errors) print_r($errors);
+				}
 			}
-
-
-			$this->_render('formImagenes');
+			return $this->_render('form.imagen');
 		}
-	}
+
+        function ver($id = '',$img = ''){
+            $path = '../imageUpload/'.$id.'/'.$img;
+            if (!file_exists($path)) {
+                exit;
+            }
+            $prop = getimagesize($path);
+		    header('Content-Type: '.$prop['mime']);
+		    readfile($path);exit;
+        }
+
+
 }

@@ -21,7 +21,7 @@
 			if (empty($_COOKIE['user'])){
                                 return false;
                         }
-                        $userTable = new userTable();
+                        $userTable = new UserTable();
                         $user = $userTable->getByName($_COOKIE['user']);
                         if(empty($user)){
                                 return false;
