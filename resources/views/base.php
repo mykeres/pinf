@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Sabrewing</title>
+	<title>pinf</title>
 </head>
 <body>
 	{{__MAIN__}}

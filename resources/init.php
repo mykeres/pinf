@@ -15,12 +15,18 @@
 			return self::$user;
 		}
 		public static function isLogged(): bool{
-			if (empty($_COOKIE['user'])) {return false;}
-			$ouser = new UserOld($_COOKIE['user']);
-			$obj = $ouser->userExists();
-			if (!empty($obj)) {
-				self::$user = $obj;
-			}
-			return !empty($obj);
+                        if(!empty(self::$user)){
+                                return true;
+                        }
+			if (empty($_COOKIE['user'])){
+                                return false;
+                        }
+                        $userTable = new userTable();
+                        $user = $userTable->getByName($_COOKIE['user']);
+                        if(empty($user)){
+                                return false;
+                        }
+                        self::$user = $user; //cacheamos 
+                        return true;
 		}
 	}
